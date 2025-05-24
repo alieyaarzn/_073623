@@ -1,29 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Crypto Dashboard</title>
-  <link rel="stylesheet" href="css/style.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Crypto Dashboard</title>
+<link rel="stylesheet" href="css/style-dashboard2.css" />
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <header>
-    <h1>Crypto Dashboard</h1>
-    <a href="index.html">Back to Home</a>
-  </header>
+  <nav class="navbar">
+    <h1>PinkPro Crypto</h1>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="dashboard1.html">Weather</a></li>
+      <li><a href="dashboard2.html" class="active">Crypto</a></li>
+    </ul>
+  </nav>
 
-  <section class="crypto-section">
+  <main class="container">
+    <h2>Cryptocurrency Prices</h2>
     <table id="cryptoTable">
       <thead>
-        <tr><th>Name</th><th>Symbol</th><th>Price (USD)</th></tr>
+        <tr>
+          <th>Rank</th>
+          <th>Name</th>
+          <th>Symbol</th>
+          <th>Price (USD)</th>
+          <th>Market Cap</th>
+          <th>Change (24h)</th>
+        </tr>
       </thead>
-      <tbody></tbody>
+      <tbody>
+        <!-- Data populated by JS -->
+      </tbody>
     </table>
 
-    <canvas id="cryptoChart"></canvas>
-  </section>
+    <div class="chart-container">
+      <canvas id="cryptoChart"></canvas>
+    </div>
+  </main>
 
-  <script src="js/dashboard2.js"></script>
+  <footer>
+    &copy; 2025 PinkPro Crypto Dashboard
+  </footer>
+
+<script src="js/dashboard2.js"></script>
 </body>
 </html>
