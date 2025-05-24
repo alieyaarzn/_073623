@@ -1,20 +1,46 @@
-<!-- dashboard1.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Weather Dashboard</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/style.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <div class="container mt-5">
-    <h2>Weather Dashboard (OpenWeather API)</h2>
-    <input type="text" id="cityInput" placeholder="Enter city name" class="form-control mb-3" />
-    <button onclick="fetchWeather()" class="btn btn-primary mb-4">Get Weather</button>
-    <canvas id="weatherChart"></canvas>
-  </div>
+  <header class="navbar">
+    <div class="container">
+      <h1 class="logo">PinkDash</h1>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="dashboard1.html">Weather</a></li>
+          <li><a href="dashboard2.html">Crypto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="dashboard">
+    <div class="container">
+      <h2>Live Weather Dashboard</h2>
+      <div>
+        <input type="text" id="cityInput" placeholder="Enter city...">
+        <button class="btn" onclick="getWeatherData()">Search</button>
+      </div>
+      <div id="weatherOutput"></div>
+      <div class="chart-container">
+        <canvas id="tempChart"></canvas>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 PinkDash. All rights reserved.</p>
+    </div>
+  </footer>
+
   <script src="js/dashboard1.js"></script>
 </body>
 </html>
