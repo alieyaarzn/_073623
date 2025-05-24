@@ -5,41 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Weather Dashboard</title>
   <link rel="stylesheet" href="css/style.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <header class="navbar">
-    <div class="container">
-      <h1 class="logo">PinkDash</h1>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="dashboard1.html">Weather</a></li>
-          <li><a href="dashboard2.html">Crypto</a></li>
-        </ul>
-      </nav>
-    </div>
+  <header>
+    <h1>Weather Dashboard</h1>
+    <a href="index.html">Back to Home</a>
   </header>
 
-  <main class="dashboard">
-    <div class="container">
-      <h2>Live Weather Dashboard</h2>
-      <div>
-        <input type="text" id="cityInput" placeholder="Enter city...">
-        <button class="btn" onclick="getWeatherData()">Search</button>
-      </div>
-      <div id="weatherOutput"></div>
-      <div class="chart-container">
-        <canvas id="tempChart"></canvas>
-      </div>
-    </div>
-  </main>
+  <section class="input-group">
+    <input type="text" id="cityInput" placeholder="Enter city name">
+    <button onclick="getWeather()">Search</button>
+  </section>
 
-  <footer class="footer">
-    <div class="container">
-      <p>&copy; 2025 PinkDash. All rights reserved.</p>
-    </div>
-  </footer>
+  <section class="weather-result">
+    <h2 id="location"></h2>
+    <p id="description"></p>
+    <p id="temperature"></p>
+    <p id="humidity"></p>
+  </section>
 
   <script src="js/dashboard1.js"></script>
 </body>
