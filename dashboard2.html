@@ -1,42 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Crypto Dashboard</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <header>
     <h1>Crypto Dashboard</h1>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="dashboard1.html">Weather Dashboard</a></li>
-      </ul>
-    </nav>
+    <a href="index.html">Back to Home</a>
   </header>
-  <main>
-    <section class="dashboard">
-      <h2>Top 5 Cryptocurrencies</h2>
-      <table id="cryptoTable">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Symbol</th>
-            <th>Price (USD)</th>
-            <th>Change (24h)</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-      <canvas id="cryptoChart" width="400" height="200"></canvas>
-    </section>
-  </main>
-  <footer>
-    <p>© 2025 [Your Name]</p>
-  </footer>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <section class="crypto-section">
+    <table id="cryptoTable">
+      <thead>
+        <tr><th>Name</th><th>Symbol</th><th>Price (USD)</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <canvas id="cryptoChart"></canvas>
+  </section>
+
   <script src="js/dashboard2.js"></script>
 </body>
 </html>
