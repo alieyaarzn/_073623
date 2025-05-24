@@ -1,27 +1,37 @@
-async function fetchCryptoData() {
-  const coin = document.getElementById('coinInput').value.toLowerCase();
-  const url = `https://api.coingecko.com/api/v3/coins/${coin}`;
+async function loadCryptoData() {
+  const url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=5&page=1';
+  const response = await fetch(url);
+  const data = await response.json();
 
-  const res = await fetch(url);
-  const data = await res.json();
+  const tableBody = document.querySelector("#cryptoTable tbody");
+  const labels = [], prices = [];
 
-  const marketData = data.market_data;
-  const currentPrice = marketData.current_price.usd;
-  const marketCap = marketData.market_cap.usd;
-  const labels = ['Price (USD)', 'Market Cap (USD)'];
-  const values = [currentPrice, marketCap];
+  data.forEach(coin => {
+    const row = document.createElement("tr");
+    row.innerHTML = `<td>${coin.name}</td><td>${coin.symbol.toUpperCase()}</td><td>$${coin.current_price}</td>`;
+    tableBody.appendChild(row);
+    labels.push(coin.name);
+    prices.push(coin.current_price);
+  });
 
-  const ctx = document.getElementById('cryptoChart').getContext('2d');
-  new Chart(ctx, {
+  new Chart(document.getElementById('cryptoChart').getContext('2d'), {
     type: 'bar',
     data: {
       labels,
       datasets: [{
-        label: 'Crypto Data',
-        data: values,
-        backgroundColor: ['#ffc107', '#17a2b8']
+        label: 'Price in USD',
+        data: prices,
+        backgroundColor: 'rgba(255, 182, 193, 0.6)',
+        borderColor: 'rgba(255, 105, 180, 1)',
+        borderWidth: 1
       }]
     },
-    options: { responsive: true }
+    options: {
+      scales: {
+        y: { beginAtZero: true }
+      }
+    }
   });
 }
+
+loadCryptoData();
