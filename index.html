@@ -1,30 +1,33 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>My Web Dashboard</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Web Dashboard System</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100 text-gray-800">
-  <header class="bg-blue-600 text-white p-4">
-    <h1 class="text-2xl font-bold">👩‍💻 My Web Dashboard</h1>
-    <p>Created by [Your Name]</p>
-  </header>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">My Web Dashboard</a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="dashboard1.html">Weather Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="dashboard2.html">Crypto Dashboard</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-  <main class="p-6">
-    <section class="mb-8">
-      <h2 class="text-xl font-semibold mb-2">About Me</h2>
-      <p>Hello! I'm [Your Name], a web developer passionate about creating responsive and functional interfaces. This project demonstrates two live dashboards using real-time API data.</p>
-    </section>
-
-    <section>
-      <h2 class="text-xl font-semibold mb-2">Dashboards</h2>
-      <ul class="list-disc ml-6">
-        <li><a href="dashboard1.html" class="text-blue-600 underline">🌦️ Weather Monitoring Dashboard</a></li>
-        <li><a href="dashboard2.html" class="text-blue-600 underline">💹 Cryptocurrency Prices Dashboard</a></li>
-      </ul>
-    </section>
+  <main class="container mt-5">
+    <h1>About Me</h1>
+    <p>Hello! I'm [Your Name], a web developer passionate about data and analytics. This project demonstrates two live dashboards using public APIs, built with HTML, CSS, JavaScript, Bootstrap, and deployed using GitHub Pages.</p>
   </main>
 </body>
 </html>
