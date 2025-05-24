@@ -1,29 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Weather Dashboard</title>
-  <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Weather Dashboard</title>
+<link rel="stylesheet" href="css/style-dashboard1.css" />
 </head>
 <body>
-  <header>
-    <h1>Weather Dashboard</h1>
-    <a href="index.html">Back to Home</a>
-  </header>
+  <nav class="navbar">
+    <h1>PinkPro Weather</h1>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="dashboard1.html" class="active">Weather</a></li>
+      <li><a href="dashboard2.html">Crypto</a></li>
+    </ul>
+  </nav>
 
-  <section class="input-group">
-    <input type="text" id="cityInput" placeholder="Enter city name">
-    <button onclick="getWeather()">Search</button>
-  </section>
+  <main class="container">
+    <h2>Check Weather Anywhere</h2>
+    <div class="search-box">
+      <input type="text" id="cityInput" placeholder="Enter city name" />
+      <button id="searchBtn">Search</button>
+    </div>
 
-  <section class="weather-result">
-    <h2 id="location"></h2>
-    <p id="description"></p>
-    <p id="temperature"></p>
-    <p id="humidity"></p>
-  </section>
+    <div id="weatherDisplay"></div>
+  </main>
 
-  <script src="js/dashboard1.js"></script>
+  <footer>
+    &copy; 2025 PinkPro Weather Dashboard
+  </footer>
+
+<script src="js/dashboard1.js"></script>
 </body>
 </html>
