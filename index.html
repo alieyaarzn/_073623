@@ -2,31 +2,29 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Alieya Ruzaini - Dashboard Project</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Web Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-  <header>
-    <h1>Alieya Ruzaini</h1>
-    <p>Student / Web Developer / API Enthusiast</p>
-    <nav>
-      <ul>
-        <li><a href="dashboard1.html">Weather Dashboard</a></li>
-        <li><a href="dashboard2.html">Crypto Dashboard</a></li>
-      </ul>
-    </nav>
+<body class="bg-gray-100 text-gray-800">
+  <header class="bg-blue-600 text-white p-4">
+    <h1 class="text-2xl font-bold">👩‍💻 My Web Dashboard</h1>
+    <p>Created by [Your Name]</p>
   </header>
 
-  <main>
+  <main class="p-6">
+    <section class="mb-8">
+      <h2 class="text-xl font-semibold mb-2">About Me</h2>
+      <p>Hello! I'm [Your Name], a web developer passionate about creating responsive and functional interfaces. This project demonstrates two live dashboards using real-time API data.</p>
+    </section>
+
     <section>
-      <h2>About Me</h2>
-      <p>Hello! I am Alieya Arzn, currently studying Internet Computing. I enjoy building web dashboards and working with APIs to create interactive visualizations.</p>
+      <h2 class="text-xl font-semibold mb-2">Dashboards</h2>
+      <ul class="list-disc ml-6">
+        <li><a href="dashboard1.html" class="text-blue-600 underline">🌦️ Weather Monitoring Dashboard</a></li>
+        <li><a href="dashboard2.html" class="text-blue-600 underline">💹 Cryptocurrency Prices Dashboard</a></li>
+      </ul>
     </section>
   </main>
-
-  <footer>
-    <p>&copy; 2025 Alieya Arzn</p>
-  </footer>
 </body>
 </html>
