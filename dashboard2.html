@@ -1,20 +1,53 @@
-<!-- dashboard2.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Crypto Dashboard</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/style.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <div class="container mt-5">
-    <h2>Crypto Dashboard (CoinGecko API)</h2>
-    <input type="text" id="coinInput" placeholder="Enter coin id (e.g. bitcoin)" class="form-control mb-3" />
-    <button onclick="fetchCryptoData()" class="btn btn-primary mb-4">Get Data</button>
-    <canvas id="cryptoChart"></canvas>
-  </div>
+  <header class="navbar">
+    <div class="container">
+      <h1 class="logo">PinkDash</h1>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="dashboard1.html">Weather</a></li>
+          <li><a href="dashboard2.html">Crypto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="dashboard">
+    <div class="container">
+      <h2>Live Cryptocurrency Dashboard</h2>
+      <div class="chart-container">
+        <canvas id="cryptoChart"></canvas>
+      </div>
+      <table class="data-table" id="cryptoTable">
+        <thead>
+          <tr>
+            <th>Coin</th>
+            <th>Price (USD)</th>
+            <th>24h Change (%)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Data will be inserted here -->
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 PinkDash. All rights reserved.</p>
+    </div>
+  </footer>
+
   <script src="js/dashboard2.js"></script>
 </body>
 </html>
