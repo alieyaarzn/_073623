@@ -1,48 +1,56 @@
-const weatherBtn = document.getElementById('weatherSearchBtn');
-const cityInput = document.getElementById('cityInput');
-const weatherCity = document.getElementById('weatherCity');
-const weatherTemp = document.getElementById('weatherTemp');
-const weatherDesc = document.getElementById('weatherDesc');
-const weatherHumidity = document.getElementById('weatherHumidity');
-const weatherWind = document.getElementById('weatherWind');
-const weatherChartCtx = document.getElementById('weatherChart').getContext('2d');
+const cryptoSearchBtn = document.getElementById('cryptoSearchBtn');
+const cryptoInput = document.getElementById('cryptoInput');
+const cryptoName = document.getElementById('cryptoName');
+const cryptoPrice = document.getElementById('cryptoPrice');
+const cryptoMarketCap = document.getElementById('cryptoMarketCap');
+const cryptoChange = document.getElementById('cryptoChange');
+const cryptoCtx = document.getElementById('cryptoChart').getContext('2d');
 
-const apiKey = "71278c4f795db6a147fd96252a7f9868";
+let cryptoChart;
 
-let weatherChart;
-
-async function fetchWeather(city) {
+async function fetchCryptoData(id) {
   try {
-    const res = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
-    );
+    // Get current data
+    const res = await fetch(`https://api.coingecko.com/api/v3/coins/${id}`);
     const data = await res.json();
-
-    if (data.cod !== 200) {
-      alert('City not found!');
+    if (data.error) {
+      alert('Crypto not found!');
       return;
     }
 
-    weatherCity.textContent = data.name + ', ' + data.sys.country;
-    weatherTemp.textContent = data.main.temp + ' °C';
-    weatherDesc.textContent = data.weather[0].description;
-    weatherHumidity.textContent = data.main.humidity + ' %';
-    weatherWind.textContent = data.wind.speed + ' m/s';
+    cryptoName.textContent = data.name + ' (' + data.symbol.toUpperCase() + ')';
+    cryptoPrice.textContent = data.market_data.current_price.usd.toLocaleString();
+    cryptoMarketCap.textContent = data.market_data.market_cap.usd.toLocaleString();
+    cryptoChange.textContent = data.market_data.price_change_percentage_24h.toFixed(2);
 
-    const tempData = [data.main.temp_min, data.main.temp, data.main.temp_max];
+    // Fetch 7-day price chart data
+    const chartRes = await fetch(
+      `https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=7`
+    );
+    const chartData = await chartRes.json();
 
-    if (weatherChart) {
-      weatherChart.destroy();
+    const labels = chartData.prices.map(p => {
+      const d = new Date(p[0]);
+      return `${d.getMonth()+1}/${d.getDate()}`;
+    });
+
+    const prices = chartData.prices.map(p => p[1]);
+
+    if (cryptoChart) {
+      cryptoChart.destroy();
     }
 
-    weatherChart = new Chart(weatherChartCtx, {
-      type: 'bar',
+    cryptoChart = new Chart(cryptoCtx, {
+      type: 'line',
       data: {
-        labels: ['Min Temp', 'Current Temp', 'Max Temp'],
+        labels,
         datasets: [{
-          label: 'Temperature (°C)',
-          data: tempData,
-          backgroundColor: ['#60a5fa', '#3b82f6', '#1d4ed8']
+          label: 'Price (USD)',
+          data: prices,
+          borderColor: 'rgba(255, 206, 86, 1)',
+          backgroundColor: 'rgba(255, 206, 86, 0.2)',
+          fill: true,
+          tension: 0.3
         }]
       },
       options: {
@@ -52,16 +60,16 @@ async function fetchWeather(city) {
         }
       }
     });
-  } catch (err) {
-    alert('Failed to fetch weather data.');
-    console.error(err);
+  } catch (error) {
+    alert('Failed to fetch crypto data.');
+    console.error(error);
   }
 }
 
-weatherBtn.addEventListener('click', () => {
-  const city = cityInput.value.trim();
-  if (city) fetchWeather(city);
+cryptoSearchBtn.addEventListener('click', () => {
+  const id = cryptoInput.value.trim().toLowerCase();
+  if (id) fetchCryptoData(id);
 });
 
-// Default city
-fetchWeather('Kuala Lumpur');
+// Load default crypto on page load
+fetchCryptoData('bitcoin');
