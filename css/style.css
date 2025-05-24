@@ -1,77 +1,144 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+:root {
+  --primary-color: #f9e0e9;
+  --accent-color: #f7b6cd;
+  --text-color: #333;
+  --header-color: #fff0f5;
+  --card-color: #fff;
+  --shadow: rgba(0, 0, 0, 0.1);
+  --border-radius: 12px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #fff0f5;
-  color: #333;
-  margin: 0;
-  padding: 0;
+  background-color: var(--primary-color);
+  color: var(--text-color);
   line-height: 1.6;
+  padding-bottom: 50px;
 }
 
-header {
-  background-color: #ffc0cb;
-  padding: 20px;
-  text-align: center;
-  color: #333;
-  border-bottom: 2px solid #f06292;
-}
-
-nav ul {
-  list-style: none;
-  padding: 0;
+/* Navbar */
+.navbar {
+  background-color: var(--accent-color);
+  padding: 1rem 2rem;
   display: flex;
-  justify-content: center;
-  background-color: #ffe4e1;
-  margin: 0;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 6px var(--shadow);
 }
 
-nav ul li {
-  margin: 0 15px;
+.navbar h1 {
+  font-size: 1.5rem;
+  color: white;
+  font-weight: 600;
 }
 
-nav ul li a {
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+
+.navbar ul li a {
   text-decoration: none;
-  color: #d81b60;
-  font-weight: bold;
+  color: white;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
 }
 
+.navbar ul li a:hover {
+  background-color: #f290b7;
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+}
+
+/* Headings */
+h2 {
+  margin-bottom: 1rem;
+  color: #d14b8f;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+/* Cards */
+.card {
+  background-color: var(--card-color);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px var(--shadow);
+  margin-bottom: 2rem;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+table th, table td {
+  border: 1px solid #f3c7d8;
+  padding: 0.8rem;
+  text-align: left;
+}
+
+table th {
+  background-color: #ffe3ee;
+}
+
+/* Chart container */
+.chart-container {
+  margin-top: 2rem;
+}
+
+/* Footer */
 footer {
   text-align: center;
-  padding: 10px;
-  background-color: #ffe4e1;
-  color: #777;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
+  padding: 2rem;
+  color: #555;
 }
 
-.input-group {
-  display: flex;
-  justify-content: center;
-  margin: 20px;
-}
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
-.input-group input, .input-group button {
-  padding: 10px;
-  font-size: 16px;
-}
+  .navbar ul {
+    flex-direction: column;
+    width: 100%;
+  }
 
-.weather-result, .crypto-section {
-  text-align: center;
-  margin: 30px auto;
-  max-width: 600px;
-  background: #ffe4e1;
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
+  .navbar ul li {
+    width: 100%;
+  }
 
-#cryptoTable {
-  width: 100%;
-  margin-bottom: 20px;
-  border-collapse: collapse;
-}
+  .card {
+    padding: 1rem;
+  }
 
-#cryptoTable th, #cryptoTable td {
-  padding: 10px;
-  border: 1px solid #f8bbd0;
+  h2 {
+    font-size: 1.5rem;
+  }
 }
