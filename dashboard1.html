@@ -1,35 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Weather Dashboard</title>
-<link rel="stylesheet" href="css/style-dashboard1.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard Hub | Weather</title>
+  <link rel="stylesheet" href="css/style-dashboard1.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
 </head>
 <body>
+
+  <!-- Navbar -->
   <nav class="navbar">
-    <h1>PinkPro Weather</h1>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="dashboard1.html" class="active">Weather</a></li>
-      <li><a href="dashboard2.html">Crypto</a></li>
-    </ul>
+    <div class="nav-container">
+      <h1 class="logo">Dashboard Hub</h1>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="dashboard1.html" class="active">Weather</a></li>
+        <li><a href="dashboard2.html">Crypto</a></li>
+      </ul>
+    </div>
   </nav>
 
+  <!-- Main Content -->
   <main class="container">
-    <h2>Check Weather Anywhere</h2>
+    <h2 class="page-title">🌤️ Check Weather Anywhere</h2>
+    
     <div class="search-box">
-      <input type="text" id="cityInput" placeholder="Enter city name" />
+      <input type="text" id="cityInput" placeholder="Enter city name..." />
       <button id="searchBtn">Search</button>
     </div>
 
-    <div id="weatherDisplay"></div>
+    <div id="weatherDisplay" class="weather-card hidden">
+      <div class="weather-main">
+        <img id="weatherIcon" src="" alt="Weather Icon" />
+        <div>
+          <h3 id="cityName">City Name</h3>
+          <p id="description">Clear Sky</p>
+        </div>
+        <div class="temp" id="temperature">--°C</div>
+      </div>
+      <div class="weather-details">
+        <p>💧 Humidity: <span id="humidity">--%</span></p>
+        <p>🌬️ Wind Speed: <span id="wind">-- km/h</span></p>
+      </div>
+    </div>
   </main>
 
+  <!-- Footer -->
   <footer>
-    &copy; 2025 PinkPro Weather Dashboard
+    &copy; 2025 Dashboard Hub • Weather Powered by Public API
   </footer>
 
-<script src="js/dashboard1.js"></script>
+  <script src="js/dashboard1.js"></script>
 </body>
 </html>
