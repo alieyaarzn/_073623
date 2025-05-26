@@ -1,149 +1,140 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-
-:root {
-  --primary-color: #fff0f5;
-  --accent-color: #f7b6cd;
-  --text-color: #3e1a2a;
-  --card-color: #ffffff;
-  --shadow: rgba(0, 0, 0, 0.1);
-  --border-radius: 15px;
-}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
 
 body {
-  font-family: 'Poppins', sans-serif;
-  background-color: var(--primary-color);
   margin: 0;
-  padding-bottom: 40px;
-  color: var(--text-color);
+  font-family: 'Inter', sans-serif;
+  background-color: #fdf7f0;
+  color: #333;
 }
 
 .navbar {
-  background-color: var(--accent-color);
+  background-color: #5e4635;
   padding: 1rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 2px 8px var(--shadow);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.navbar h1 {
-  color: #9e295c;
-  margin: 0;
-  font-weight: 700;
-}
-
-.navbar ul {
-  list-style: none;
-  display: flex;
-  gap: 1.2rem;
-  margin: 0;
-  padding: 0;
-}
-
-.navbar ul li a {
-  color: #4d224d;
-  text-decoration: none;
-  font-weight: 600;
-  padding: 5px 10px;
-  border-radius: 12px;
-  transition: background-color 0.25s ease;
-}
-
-.navbar ul li a.active,
-.navbar ul li a:hover {
-  background-color: #9e295c;
   color: white;
 }
 
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  color: #e0cfc2;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nav-links a.active,
+.nav-links a:hover {
+  color: #fff;
+}
+
 .container {
-  max-width: 600px;
+  max-width: 800px;
   margin: 2rem auto;
-  padding: 1rem 1.5rem;
-  background: var(--card-color);
-  box-shadow: 0 8px 18px var(--shadow);
-  border-radius: var(--border-radius);
+  padding: 0 1rem;
   text-align: center;
 }
 
-h2 {
+.page-title {
+  font-size: 1.8rem;
   margin-bottom: 1rem;
-  font-weight: 700;
-  color: #9e295c;
+  color: #5e4635;
 }
 
 .search-box {
-  margin-bottom: 1.5rem;
   display: flex;
   justify-content: center;
   gap: 0.5rem;
+  margin-bottom: 2rem;
 }
 
 .search-box input {
-  padding: 0.7rem 1rem;
-  width: 70%;
-  border: 2px solid #f7b6cd;
-  border-radius: 15px;
-  font-size: 1rem;
-  transition: border-color 0.3s ease;
-}
-
-.search-box input:focus {
-  outline: none;
-  border-color: #9e295c;
+  padding: 0.6rem;
+  width: 60%;
+  max-width: 300px;
+  border: 2px solid #d6bfae;
+  border-radius: 8px;
 }
 
 .search-box button {
-  padding: 0.7rem 1.5rem;
-  background-color: #f7b6cd;
+  padding: 0.6rem 1rem;
+  background-color: #a47551;
+  color: white;
   border: none;
-  border-radius: 15px;
-  font-weight: 700;
-  color: #5a1e3b;
+  border-radius: 8px;
+  font-weight: 600;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .search-box button:hover {
-  background-color: #9e295c;
-  color: white;
+  background-color: #8a5c3a;
 }
 
 .weather-card {
-  background-color: var(--primary-color);
-  box-shadow: 0 5px 15px var(--shadow);
-  border-radius: var(--border-radius);
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+  text-align: left;
+  max-width: 500px;
+  margin: 0 auto;
+  transition: all 0.3s ease;
+}
+
+.weather-card.hidden {
+  display: none;
+}
+
+.weather-main {
   display: flex;
   align-items: center;
-  padding: 1rem;
-  gap: 1.3rem;
-  justify-content: center;
+  justify-content: space-between;
+  gap: 1rem;
 }
 
-.weather-card img {
-  width: 90px;
-  height: 90px;
+.weather-main img {
+  width: 80px;
+  height: 80px;
 }
 
-.weather-info {
-  text-align: left;
-  color: #5a1e3b;
+.weather-main h3 {
+  margin: 0;
+  font-size: 1.5rem;
 }
 
-.weather-info h3 {
-  margin: 0 0 10px 0;
-  font-weight: 700;
+.temp {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #a47551;
 }
 
-.weather-info p {
-  margin: 4px 0;
+.weather-details {
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: #5e4635;
 }
 
 footer {
-  margin-top: 2rem;
   text-align: center;
-  font-size: 0.8rem;
-  color: #7a4562;
+  padding: 1.5rem;
+  background-color: #5e4635;
+  color: #e0cfc2;
+  margin-top: 3rem;
+  font-size: 0.9rem;
 }
