@@ -1,69 +1,62 @@
-const cryptoTableBody = document.querySelector('#cryptoTable tbody');
-const ctx = document.getElementById('cryptoChart').getContext('2d');
-
-let cryptoChart;
-
 async function fetchCryptoData() {
-  try {
-    const res = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false');
-    const data = await res.json();
+  const response = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd');
+  const data = await response.json();
 
-    // Tulis table
-    cryptoTableBody.innerHTML = '';
-    data.forEach(coin => {
-      const changeClass = coin.price_change_percentage_24h >= 0 ? 'positive' : 'negative';
-      cryptoTableBody.innerHTML += `
-        <tr>
-          <td>${coin.market_cap_rank}</td>
-          <td><img src="${coin.image}" alt="${coin.name}" style="width:20px; vertical-align:middle; margin-right:6px;"> ${coin.name}</td>
-          <td>${coin.symbol.toUpperCase()}</td>
-          <td>$${coin.current_price.toLocaleString()}</td>
-          <td>$${coin.market_cap.toLocaleString()}</td>
-          <td class="${changeClass}">${coin.price_change_percentage_24h.toFixed(2)}%</td>
-        </tr>
-      `;
-    });
+  const tbody = document.querySelector('#cryptoTable tbody');
+  tbody.innerHTML = '';
 
-    // Update chart
-    const labels = data.map(c => c.symbol.toUpperCase());
-    const prices = data.map(c => c.current_price);
+  data.slice(0, 10).forEach((coin, index) => {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td>${coin.market_cap_rank}</td>
+      <td>${coin.name}</td>
+      <td>${coin.symbol.toUpperCase()}</td>
+      <td>$${coin.current_price.toLocaleString()}</td>
+      <td>$${coin.market_cap.toLocaleString()}</td>
+      <td style="color:${coin.price_change_percentage_24h >= 0 ? 'green' : 'red'}">
+        ${coin.price_change_percentage_24h.toFixed(2)}%
+      </td>
+    `;
+    tbody.appendChild(row);
+  });
 
-    if (cryptoChart) cryptoChart.destroy();
+  document.getElementById('lastUpdated').textContent = `Last updated: ${new Date().toLocaleTimeString()}`;
 
-    cryptoChart = new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: labels,
-        datasets: [{
-          label: 'Price in USD',
-          data: prices,
-          backgroundColor: 'rgba(247, 182, 205, 0.7)',
-          borderColor: 'rgba(209, 75, 143, 1)',
-          borderWidth: 1,
-          borderRadius: 5
-        }]
+  // Chart
+  const topCoins = data.slice(0, 5);
+  const labels = topCoins.map(c => c.name);
+  const prices = topCoins.map(c => c.current_price);
+
+  const ctx = document.getElementById('cryptoChart').getContext('2d');
+  if (window.cryptoChart) window.cryptoChart.destroy(); // Prevent duplicate charts
+
+  window.cryptoChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [{
+        label: 'Price in USD',
+        data: prices,
+        backgroundColor: '#8d6e63',
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { display: false },
+        tooltip: { mode: 'index', intersect: false }
       },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true,
-            ticks: {
-              callback: value => `$${value.toLocaleString()}`
-            }
-          }
-        },
-        plugins: {
-          legend: {
-            labels: { color: '#9e295c', font: { weight: '600', size: 14 } }
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            callback: (value) => `$${value}`
           }
         }
       }
-    });
-
-  } catch (error) {
-    cryptoTableBody.innerHTML = `<tr><td colspan="6">Error loading data</td></tr>`;
-    console.error(error);
-  }
+    }
+  });
 }
 
 fetchCryptoData();
+setInterval(fetchCryptoData, 300000); // refresh every 5 mins
