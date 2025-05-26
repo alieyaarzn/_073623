@@ -1,49 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Crypto Dashboard</title>
-<link rel="stylesheet" href="css/style-dashboard2.css" />
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard Hub | Crypto</title>
+  <link rel="stylesheet" href="css/style-dashboard2.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+
+  <!-- Navbar -->
   <nav class="navbar">
-    <h1>PinkPro Crypto</h1>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="dashboard1.html">Weather</a></li>
-      <li><a href="dashboard2.html" class="active">Crypto</a></li>
-    </ul>
+    <div class="nav-container">
+      <h1 class="logo">Dashboard Hub</h1>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="dashboard1.html">Weather</a></li>
+        <li><a href="dashboard2.html" class="active">Crypto</a></li>
+      </ul>
+    </div>
   </nav>
 
+  <!-- Main Content -->
   <main class="container">
-    <h2>Cryptocurrency Prices</h2>
-    <table id="cryptoTable">
-      <thead>
-        <tr>
-          <th>Rank</th>
-          <th>Name</th>
-          <th>Symbol</th>
-          <th>Price (USD)</th>
-          <th>Market Cap</th>
-          <th>Change (24h)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- Data populated by JS -->
-      </tbody>
-    </table>
+    <h2 class="page-title">📊 Live Cryptocurrency Market</h2>
+    
+    <div class="crypto-table-wrapper">
+      <table id="cryptoTable">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Symbol</th>
+            <th>Price (USD)</th>
+            <th>Market Cap</th>
+            <th>Change (24h)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Dynamic Data -->
+        </tbody>
+      </table>
+    </div>
 
-    <div class="chart-container">
+    <div class="chart-section">
+      <h3>Top Crypto Price Trends</h3>
       <canvas id="cryptoChart"></canvas>
     </div>
+
+    <p class="last-updated" id="lastUpdated">Last updated: --</p>
   </main>
 
   <footer>
-    &copy; 2025 PinkPro Crypto Dashboard
+    &copy; 2025 Dashboard Hub • Powered by Crypto API
   </footer>
 
-<script src="js/dashboard2.js"></script>
+  <script src="js/dashboard2.js"></script>
 </body>
 </html>
