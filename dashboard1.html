@@ -1,49 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Holiday Dashboard | Dashboard Hub</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Weather Dashboard</title>
+<link rel="stylesheet" href="css/style-dashboard1.css" />
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body>
+  <nav class="navbar">
+    <h1>PinkPro Weather</h1>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="dashboard1.html" class="active">Weather</a></li>
+      <li><a href="dashboard2.html">Crypto</a></li>
+    </ul>
+  </nav>
 
-  <header class="bg-blue-600 text-white p-6 shadow">
-    <div class="max-w-6xl mx-auto">
-      <h1 class="text-3xl font-bold">Holiday Dashboard</h1>
-      <p class="text-sm text-gray-200">Powered by <a href="https://date.nager.at" target="_blank" class="underline">Nager.Date API</a></p>
+  <main class="container">
+    <h2>Check Weather Anywhere</h2>
+    <div class="search-box">
+      <input type="text" id="cityInput" placeholder="Enter city name" />
+      <button id="searchBtn">Search</button>
     </div>
-  </header>
 
-  <main class="max-w-6xl mx-auto p-6">
-    <!-- Select Country -->
-    <section class="mb-6">
-      <label for="countrySelect" class="block text-lg font-semibold mb-2">Select Country:</label>
-      <select id="countrySelect" class="w-full p-2 border rounded"></select>
-    </section>
-
-    <!-- Results -->
-    <section>
-      <h2 class="text-xl font-semibold mb-4">Upcoming Holidays</h2>
-      <div class="overflow-x-auto">
-        <table class="min-w-full bg-white shadow rounded-lg overflow-hidden">
-          <thead class="bg-blue-100 text-blue-900">
-            <tr>
-              <th class="py-3 px-4 text-left">Date</th>
-              <th class="py-3 px-4 text-left">Local Name</th>
-              <th class="py-3 px-4 text-left">English Name</th>
-              <th class="py-3 px-4 text-left">Type</th>
-            </tr>
-          </thead>
-          <tbody id="holidayTable" class="text-gray-700">
-            <!-- Dynamic holiday rows -->
-          </tbody>
-        </table>
-      </div>
-    </section>
+    <div id="weatherDisplay"></div>
   </main>
 
-  <!-- Link to External JS -->
-  <script src="dashboard1.js"></script>
+  <footer>
+    &copy; 2025 PinkPro Weather Dashboard
+  </footer>
+
+<script src="js/dashboard1.js"></script>
 </body>
 </html>
