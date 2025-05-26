@@ -1,62 +1,63 @@
-async function fetchCryptoData() {
-  const response = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd');
-  const data = await response.json();
+document.addEventListener("DOMContentLoaded", () => {
+  const tableBody = document.querySelector("#cryptoTable tbody");
+  const chartCtx = document.getElementById("cryptoChart").getContext("2d");
 
-  const tbody = document.querySelector('#cryptoTable tbody');
-  tbody.innerHTML = '';
+  fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false")
+    .then(response => response.json())
+    .then(data => {
+      // Populate table
+      data.forEach((coin, index) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${coin.market_cap_rank}</td>
+          <td>${coin.name}</td>
+          <td>${coin.symbol.toUpperCase()}</td>
+          <td>$${coin.current_price.toLocaleString()}</td>
+          <td>$${coin.market_cap.toLocaleString()}</td>
+          <td style="color:${coin.price_change_percentage_24h >= 0 ? 'green' : 'red'};">
+            ${coin.price_change_percentage_24h.toFixed(2)}%
+          </td>
+        `;
+        tableBody.appendChild(row);
+      });
 
-  data.slice(0, 10).forEach((coin, index) => {
-    const row = document.createElement('tr');
-    row.innerHTML = `
-      <td>${coin.market_cap_rank}</td>
-      <td>${coin.name}</td>
-      <td>${coin.symbol.toUpperCase()}</td>
-      <td>$${coin.current_price.toLocaleString()}</td>
-      <td>$${coin.market_cap.toLocaleString()}</td>
-      <td style="color:${coin.price_change_percentage_24h >= 0 ? 'green' : 'red'}">
-        ${coin.price_change_percentage_24h.toFixed(2)}%
-      </td>
-    `;
-    tbody.appendChild(row);
-  });
+      document.getElementById('lastUpdated').textContent = `Last updated: ${new Date().toLocaleTimeString()}`;
 
-  document.getElementById('lastUpdated').textContent = `Last updated: ${new Date().toLocaleTimeString()}`;
+      // Pie Chart: Top 5 by market cap
+      const top5 = data.slice(0, 5);
+      const labels = top5.map(coin => coin.name);
+      const values = top5.map(coin => coin.market_cap);
 
-  // Chart
-  const topCoins = data.slice(0, 5);
-  const labels = topCoins.map(c => c.name);
-  const prices = topCoins.map(c => c.current_price);
-
-  const ctx = document.getElementById('cryptoChart').getContext('2d');
-  if (window.cryptoChart) window.cryptoChart.destroy(); // Prevent duplicate charts
-
-  window.cryptoChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels,
-      datasets: [{
-        label: 'Price in USD',
-        data: prices,
-        backgroundColor: '#8d6e63',
-      }]
-    },
-    options: {
-      responsive: true,
-      plugins: {
-        legend: { display: false },
-        tooltip: { mode: 'index', intersect: false }
-      },
-      scales: {
-        y: {
-          beginAtZero: true,
-          ticks: {
-            callback: (value) => `$${value}`
+      new Chart(chartCtx, {
+        type: 'pie',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Market Cap',
+            data: values,
+            backgroundColor: ['#a67c52', '#deb887', '#e0c3a8', '#c2a47e', '#f2d2b6'],
+            borderColor: '#fff',
+            borderWidth: 2
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: {
+                color: '#3d2b1f',
+                font: {
+                  size: 14
+                }
+              }
+            }
           }
         }
-      }
-    }
-  });
-}
-
-fetchCryptoData();
-setInterval(fetchCryptoData, 300000); // refresh every 5 mins
+      });
+    })
+    .catch(error => {
+      console.error("Error fetching crypto data:", error);
+      tableBody.innerHTML = `<tr><td colspan="6">Failed to load data.</td></tr>`;
+    });
+});
