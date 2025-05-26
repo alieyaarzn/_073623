@@ -1,33 +1,56 @@
-const countrySelect = document.getElementById('countrySelect');
-const holidayTable = document.getElementById('holidayTable');
+const API_KEY = '71278c4f795db6a147fd96252a7f9868';
 
-// Fetch senarai negara dan papar dalam dropdown
-fetch('https://date.nager.at/api/v3/AvailableCountries')
-  .then(res => res.json())
-  .then(data => {
-    countrySelect.innerHTML = data.map(c => `<option value="${c.countryCode}">${c.name}</option>`).join('');
-    loadHolidays(data[0].countryCode); // Papar negara pertama
-  });
+const searchBtn = document.getElementById('searchBtn');
+const cityInput = document.getElementById('cityInput');
+const weatherDisplay = document.getElementById('weatherDisplay');
 
-// Bila user pilih negara, fetch cuti negara tersebut
-countrySelect.addEventListener('change', (e) => {
-  loadHolidays(e.target.value);
+async function getWeather(city) {
+  if (!city) {
+    weatherDisplay.innerHTML = '<div class="alert alert-warning">Please enter a city name.</div>';
+    return;
+  }
+
+  weatherDisplay.innerHTML = '<div class="loading">Loading weather data...</div>';
+
+  try {
+    const response = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${API_KEY}&units=metric`
+    );
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || 'City not found');
+    }
+
+    const data = await response.json();
+
+    weatherDisplay.innerHTML = `
+      <div class="weather-card">
+        <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="${data.weather[0].description}" />
+        <div class="weather-info">
+          <h3>${data.name}, ${data.sys.country}</h3>
+          <p><strong>🌡️ Temperature:</strong> ${data.main.temp} °C</p>
+          <p><strong>🌤️ Condition:</strong> ${data.weather[0].description}</p>
+          <p><strong>💧 Humidity:</strong> ${data.main.humidity}%</p>
+          <p><strong>🌬️ Wind:</strong> ${data.wind.speed} m/s</p>
+        </div>
+      </div>
+    `;
+  } catch (error) {
+    weatherDisplay.innerHTML = `<div class="alert alert-danger">Error: ${error.message}</div>`;
+  }
+}
+
+// Event listeners
+searchBtn.addEventListener('click', () => {
+  getWeather(cityInput.value.trim());
 });
 
-// Fungsi fetch cuti umum berdasarkan negara
-function loadHolidays(code) {
-  holidayTable.innerHTML = `<tr><td colspan="4" class="p-4 text-center text-gray-500">Loading...</td></tr>`;
-  const year = new Date().getFullYear();
-  fetch(`https://date.nager.at/api/v3/PublicHolidays/${year}/${code}`)
-    .then(res => res.json())
-    .then(holidays => {
-      holidayTable.innerHTML = holidays.map(h => `
-        <tr class="border-b hover:bg-gray-100">
-          <td class="py-2 px-4">${h.date}</td>
-          <td class="py-2 px-4">${h.localName}</td>
-          <td class="py-2 px-4">${h.name}</td>
-          <td class="py-2 px-4">${h.types?.join(', ') || 'Public'}</td>
-        </tr>
-      `).join('');
-    });
-}
+cityInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    getWeather(cityInput.value.trim());
+  }
+});
+
+// Auto-load default city
+getWeather('Kuala Lumpur');
