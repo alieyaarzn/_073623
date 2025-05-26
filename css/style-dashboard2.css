@@ -3,14 +3,14 @@
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
-  background-color: #f3efea;
+  background-color: #fdf7f0;
   color: #333;
 }
 
 .navbar {
-  background-color: #4e342e;
-  color: #fff;
+  background-color: #5e4635;
   padding: 1rem 2rem;
+  color: white;
 }
 
 .nav-container {
@@ -18,7 +18,7 @@ body {
   justify-content: space-between;
   align-items: center;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: auto;
 }
 
 .logo {
@@ -44,14 +44,16 @@ body {
 }
 
 .container {
-  max-width: 1100px;
+  max-width: 800px;
   margin: 2rem auto;
-  padding: 1rem 2rem;
+  padding: 0 1rem;
+  text-align: center;
 }
 
 .page-title {
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #5e4635;
 }
 
 .crypto-table-wrapper {
@@ -98,8 +100,9 @@ tbody tr:hover {
 
 footer {
   text-align: center;
-  background-color: #4e342e;
-  color: #ddd;
-  padding: 1rem;
+  padding: 1.5rem;
+  background-color: #5e4635;
+  color: #e0cfc2;
+  margin-top: 3rem;
   font-size: 0.9rem;
 }
