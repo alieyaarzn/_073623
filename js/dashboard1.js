@@ -1,56 +1,47 @@
-const API_KEY = '71278c4f795db6a147fd96252a7f9868';
-
-const searchBtn = document.getElementById('searchBtn');
-const cityInput = document.getElementById('cityInput');
-const weatherDisplay = document.getElementById('weatherDisplay');
-
-async function getWeather(city) {
-  if (!city) {
-    weatherDisplay.innerHTML = '<div class="alert alert-warning">Please enter a city name.</div>';
-    return;
+document.getElementById('searchBtn').addEventListener('click', () => {
+  const city = document.getElementById('cityInput').value.trim();
+  if (city !== '') {
+    fetchWeather(city);
   }
+});
 
-  weatherDisplay.innerHTML = '<div class="loading">Loading weather data...</div>';
+function fetchWeather(city) {
+  const apiKey = '71278c4f795db6a147fd96252a7f9868'; // Replace with your OpenWeatherMap API key
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
 
-  try {
-    const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${API_KEY}&units=metric`
-    );
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.message || 'City not found');
-    }
-
-    const data = await response.json();
-
-    weatherDisplay.innerHTML = `
-      <div class="weather-card">
-        <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="${data.weather[0].description}" />
-        <div class="weather-info">
-          <h3>${data.name}, ${data.sys.country}</h3>
-          <p><strong>🌡️ Temperature:</strong> ${data.main.temp} °C</p>
-          <p><strong>🌤️ Condition:</strong> ${data.weather[0].description}</p>
-          <p><strong>💧 Humidity:</strong> ${data.main.humidity}%</p>
-          <p><strong>🌬️ Wind:</strong> ${data.wind.speed} m/s</p>
-        </div>
-      </div>
-    `;
-  } catch (error) {
-    weatherDisplay.innerHTML = `<div class="alert alert-danger">Error: ${error.message}</div>`;
-  }
+  fetch(url)
+    .then(res => {
+      if (!res.ok) {
+        throw new Error("City not found");
+      }
+      return res.json();
+    })
+    .then(data => {
+      updateWeatherCard(data);
+    })
+    .catch(error => {
+      alert("Error: " + error.message);
+    });
 }
 
-// Event listeners
-searchBtn.addEventListener('click', () => {
-  getWeather(cityInput.value.trim());
-});
+function updateWeatherCard(data) {
+  const card = document.getElementById('weatherDisplay');
+  const icon = document.getElementById('weatherIcon');
+  const cityName = document.getElementById('cityName');
+  const description = document.getElementById('description');
+  const temperature = document.getElementById('temperature');
+  const humidity = document.getElementById('humidity');
+  const wind = document.getElementById('wind');
 
-cityInput.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter') {
-    getWeather(cityInput.value.trim());
-  }
-});
+  const iconCode = data.weather[0].icon;
+  icon.src = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+  icon.alt = data.weather[0].description;
 
-// Auto-load default city
-getWeather('Kuala Lumpur');
+  cityName.textContent = data.name;
+  description.textContent = data.weather[0].description.replace(/^\w/, c => c.toUpperCase());
+  temperature.textContent = `${Math.round(data.main.temp)}°C`;
+  humidity.textContent = `${data.main.humidity}%`;
+  wind.textContent = `${data.wind.speed} km/h`;
+
+  card.classList.remove('hidden');
+}
