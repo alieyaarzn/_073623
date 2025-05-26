@@ -3,49 +3,58 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>About Me - PinkPro</title>
+  <title>Dashboard Hub | Weather & Cryptocurrencies Insights</title>
   <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+  <!-- Navbar -->
   <nav class="navbar">
-    <h1>PinkPro</h1>
-    <ul>
-      <li><a href="index.html" class="active">Home</a></li>
-      <li><a href="dashboard1.html">Weather</a></li>
-      <li><a href="dashboard2.html">Crypto</a></li>
-    </ul>
+    <div class="navbar-container">
+      <h1 class="logo">Dashboard Hub</h1>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="dashboard1.html">Weather</a></li>
+        <li><a href="dashboard2.html">Crypto</a></li>
+      </ul>
+    </div>
   </nav>
 
+  <!-- Main Content -->
   <main class="container">
     <section class="about-section">
       <img src="https://via.placeholder.com/160" alt="My Profile" class="profile-image" />
-      <h2>Hi, I'm Alieya Ruzaini a Final-Year Student at UniSZA 💻</h2>
+      <h2>Hi, I'm <span class="highlight">Alieya Ruzaini</span> — Final Year Student @ UniSZA 🎓</h2>
+
       <p>
-        I'm currently pursuing my degree in <strong>Internet Computing</strong> at <strong>Universiti Sultan Zainal Abidin (UniSZA)</strong>. 
-        My academic focus includes <strong>web development, Internet of Things (IoT), and cloud computing</strong>. 
-        I enjoy building smart systems that solve real-world problems through technology.
+        I'm currently pursuing a Bachelor's degree in <strong>Internet Computing</strong> at 
+        <strong>Universiti Sultan Zainal Abidin (UniSZA)</strong>. My areas of interest include 
+        <strong>Web Development, IoT, Cloud Computing, and Real-Time Data Integration</strong>.
       </p>
 
       <p>
-        One of my key projects is a <em>Smart Monitoring System for Lake Water Quality</em>, 
-        which uses sensors and an ESP32-CAM module to monitor turbidity, conductivity, and sedimentation in real-time.
+        This project is a part of my <strong>Web-Based Dashboard with API Integration & CI/CD Assignment</strong>. 
+        It demonstrates the ability to build and deploy dashboards using public APIs with proper CI/CD practice and GitHub commit tracking.
       </p>
 
       <p>
-        This website is part of my <strong>Web-Based Dashboard Project</strong>, where I showcase live dashboards that integrate APIs for real-time data — 
-        including a <strong>Weather Monitoring Dashboard</strong> and a <strong>Cryptocurrency Insights Dashboard</strong>.
+        I developed two live dashboards:
+        <ul class="dashboard-list">
+          <li>🌦️ <strong>Weather Monitoring Dashboard</strong> – using <a href="https://openweathermap.org/" target="_blank">OpenWeather API</a></li>
+          <li>📈 <strong>Cryptocurrency Insights Dashboard</strong> – using <a href="https://www.coingecko.com/en/api" target="_blank">CoinGecko API</a></li>
+        </ul>
       </p>
-
 
       <div class="menu">
-        <a href="dashboard1.html" class="btn">Check Weather</a>
-        <a href="dashboard2.html" class="btn">View Crypto</a>
+        <a href="dashboard1.html" class="btn">View Weather Dashboard</a>
+        <a href="dashboard2.html" class="btn">View Crypto Dashboard</a>
       </div>
     </section>
   </main>
 
+  <!-- Footer -->
   <footer>
-    &copy; 2025 PinkPro • Made with 💗
+    &copy; 2025 Dashboard Hub • Built with 💗 using HTML, CSS, JavaScript & Public APIs
   </footer>
 </body>
 </html>
