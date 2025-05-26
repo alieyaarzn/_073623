@@ -5,49 +5,58 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Dashboard Hub | Weather & Crypto Insights</title>
   <link rel="stylesheet" href="css/style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
 </head>
 <body>
 
   <!-- Navbar -->
   <nav class="navbar">
-    <h1>Dashboard Hub</h1>
-    <ul>
-      <li><a href="index.html" class="active">Home</a></li>
-      <li><a href="dashboard1.html">Weather</a></li>
-      <li><a href="dashboard2.html">Crypto</a></li>
-    </ul>
+    <div class="nav-container">
+      <h1>Dashboard Hub</h1>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="dashboard1.html">Weather</a></li>
+        <li><a href="dashboard2.html">Crypto</a></li>
+      </ul>
+    </div>
   </nav>
 
   <!-- Main Content -->
   <main class="container">
     <section class="about-section">
       <img src="https://via.placeholder.com/160" alt="Profile Image" class="profile-image" />
-      
-      <h2>Hi, I'm <span class="highlight">Alieya Ruzaini</span></h2>
-      <p class="subtitle">Final Year Student @ UniSZA 🎓</p>
+      <div class="about-text">
+        <h2>Hi, I'm <span class="highlight">Alieya Ruzaini</span></h2>
+        <p class="subtitle">Final Year Student @ UniSZA 🎓</p>
 
-      <p>
-        I’m currently pursuing a Bachelor's degree in <strong>Internet Computing</strong> at 
-        <strong>Universiti Sultan Zainal Abidin (UniSZA)</strong>. My interests include 
-        <strong>Web Development, IoT, Cloud Computing</strong>, and 
-        <strong>Real-Time Data Integration</strong>.
-      </p>
+        <p>
+          I’m currently pursuing a Bachelor's degree in <strong>Internet Computing</strong> at 
+          <strong>Universiti Sultan Zainal Abidin (UniSZA)</strong>. My interests include 
+          <strong>Web Development, IoT, Cloud Computing</strong>, and 
+          <strong>Real-Time Data Integration</strong>.
+        </p>
 
-      <p>
-        This project is part of my <strong>Web-Based Dashboard with API Integration & CI/CD Assignment</strong>. 
-        It demonstrates my ability to build and deploy interactive dashboards using public APIs with GitHub version tracking and CI/CD practices.
-      </p>
+        <p>
+          This project is part of my <strong>Web-Based Dashboard with API Integration & CI/CD Assignment</strong>. 
+          It demonstrates my ability to build and deploy interactive dashboards using public APIs with GitHub version tracking and CI/CD practices.
+        </p>
+      </div>
+    </section>
 
-      <p>
-        I have developed two live dashboards:
-      </p>
-      <ul class="dashboard-list">
-        <li>🌦️ <strong>Weather Monitoring Dashboard</strong> 
-        <li>📈 <strong>Cryptocurrency Insights Dashboard</strong> 
-      </ul>
+    <section class="dashboards-section">
+      <div class="dashboard-card">
+        <h3>🌦️ Weather Monitoring Dashboard</h3>
+        <p>Live weather updates with real-time data from multiple cities using public APIs.</p>
+        <a href="dashboard1.html" class="btn">View Weather Dashboard</a>
+      </div>
+
+      <div class="dashboard-card">
+        <h3>📈 Cryptocurrency Insights Dashboard</h3>
+        <p>Track crypto market trends and prices with interactive charts and live data.</p>
+        <a href="dashboard2.html" class="btn">View Crypto Dashboard</a>
+      </div>
     </section>
   </main>
 
